@@ -117,6 +117,7 @@ const AppContainer: React.FC = () => {
     });
   }, []);
   useEffect(() => {
+    console.log(token);
     const client = new Client(token);
     setClient(client);
 
