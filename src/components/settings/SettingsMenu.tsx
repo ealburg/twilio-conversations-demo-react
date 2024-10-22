@@ -61,6 +61,55 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
     );
   };
 
+  const getConversationPayload = async () => {
+    const convoId = props.conversation.sid;
+    try {
+      const response = await fetch(
+        `https://convert.foundifyai.com/retrieve/conversation:${convoId}`
+      );
+      const body = await response.json();
+
+      return body?.record;
+    } catch (e: any) {
+      console.log("demo error", e);
+      return undefined;
+    }
+  };
+
+  const requestDemoVideo = async (payload: any) => {
+    const raw = JSON.stringify({
+      companyName: payload.companyName,
+      reviews: payload.reviews,
+    });
+
+    const requestOptions: any = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: raw,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        "https://hooks.zapier.com/hooks/catch/10351426/217yfy0/",
+        requestOptions
+      );
+      const body = await response.json();
+      if (body?.status === "success") {
+        alert("Demo Submitted");
+        return true;
+      } else {
+        alert("Something Went Wrong");
+        return false;
+      }
+    } catch (e) {
+      console.log("demo error", e);
+      return false;
+    }
+  };
+
   return (
     <Box style={styles.settingsWrapper}>
       <MenuButton {...menu} variant="link" size="reset">
@@ -89,8 +138,13 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
         </MenuItem>
         <MenuItem
           {...menu}
-          onClick={() => {
-            alert(props.conversation.sid);
+          onClick={async () => {
+            const record = await getConversationPayload();
+            if (!record || !record.companyName || !record.reviews) {
+              alert("No Record Found");
+            } else {
+              const result = await requestDemoVideo(record);
+            }
           }}
         >
           <MediaObject verticalAlign="center">
