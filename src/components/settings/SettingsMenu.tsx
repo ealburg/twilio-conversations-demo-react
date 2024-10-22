@@ -93,7 +93,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
 
     try {
       const response = await fetch(
-        "https://hooks.zapier.com/hooks/catch/10351426/217yfy0/",
+        "https://convert.foundifyai.com/kickoff-heygen",
         requestOptions
       );
       const body = await response.json();
