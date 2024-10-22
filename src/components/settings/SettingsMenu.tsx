@@ -12,6 +12,7 @@ import {
   MediaFigure,
   MediaBody,
 } from "@twilio-paste/media-object";
+import { FileVideoIcon } from "@twilio-paste/icons/esm/FileVideoIcon";
 import { MoreIcon } from "@twilio-paste/icons/esm/MoreIcon";
 import { UserIcon } from "@twilio-paste/icons/esm/UserIcon";
 import { ArrowBackIcon } from "@twilio-paste/icons/esm/ArrowBackIcon";
@@ -84,6 +85,20 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
               />
             </MediaFigure>
             <MediaBody>{manageParticipants}</MediaBody>
+          </MediaObject>
+        </MenuItem>
+        <MenuItem {...menu} onClick={() => {
+          alert(props.conversation.sid)
+        }}>
+          <MediaObject verticalAlign="center">
+            <MediaFigure spacing="space20">
+              <FileVideoIcon
+                decorative={false}
+                title="demo"
+                color="colorTextIcon"
+              />
+            </MediaFigure>
+            <MediaBody>{"Send Demo Video"}</MediaBody>
           </MediaObject>
         </MenuItem>
         <MenuSeparator {...menu} />
