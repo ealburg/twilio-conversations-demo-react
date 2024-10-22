@@ -58,6 +58,7 @@ export async function addConversation(
 
     return conversation;
   } catch (e) {
+    console.log(e);
     unexpectedErrorNotification(e.message, addNotifications);
     throw e;
   }
