@@ -87,9 +87,12 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
             <MediaBody>{manageParticipants}</MediaBody>
           </MediaObject>
         </MenuItem>
-        <MenuItem {...menu} onClick={() => {
-          alert(props.conversation.sid)
-        }}>
+        <MenuItem
+          {...menu}
+          onClick={() => {
+            alert(props.conversation.sid);
+          }}
+        >
           <MediaObject verticalAlign="center">
             <MediaFigure spacing="space20">
               <FileVideoIcon
