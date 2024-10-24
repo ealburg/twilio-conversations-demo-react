@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { Box } from "@twilio-paste/core";
+import copy from "copy-to-clipboard";
 import {
   MenuButton,
   Menu,
@@ -16,6 +17,9 @@ import { FileVideoIcon } from "@twilio-paste/icons/esm/FileVideoIcon";
 import { MoreIcon } from "@twilio-paste/icons/esm/MoreIcon";
 import { UserIcon } from "@twilio-paste/icons/esm/UserIcon";
 import { ArrowBackIcon } from "@twilio-paste/icons/esm/ArrowBackIcon";
+
+import { SMSCapableIcon } from "@twilio-paste/icons/esm/SMSCapableIcon";
+
 import { Text } from "@twilio-paste/text";
 import { NotificationLevel } from "@twilio/conversations";
 
@@ -156,6 +160,31 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
               />
             </MediaFigure>
             <MediaBody>{"Send Demo Video"}</MediaBody>
+          </MediaObject>
+        </MenuItem>
+        <MenuSeparator {...menu} />
+        <MenuItem
+          {...menu}
+          onClick={async () => {
+            const record = await getConversationPayload();
+            if (!record || !record.companyName || !record.reviews) {
+            } else {
+              copy(
+                `Hi, Kendall here! I've created a quick video showing how ${record.companyName} could get more customers through referrals. Can I send you the link?`
+              );
+              alert("copied");
+            }
+          }}
+        >
+          <MediaObject verticalAlign="center">
+            <MediaFigure spacing="space20">
+              <SMSCapableIcon
+                decorative={false}
+                title="message"
+                color="colorTextIcon"
+              />
+            </MediaFigure>
+            <MediaBody>{"Copy Quick Message"}</MediaBody>
           </MediaObject>
         </MenuItem>
         <MenuSeparator {...menu} />
