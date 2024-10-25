@@ -196,9 +196,9 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
             } else {
               copy(
                 `Hi again! 😊 Did you get a chance to watch the video? 
-                If you're interested in discussing how referrals could grow ${record.companyName}, I'd love to chat! You can book a time that works for you here: 
-                
-                https://links.clicki.io/widget/bookings/liveclickidemo`
+If you're interested in discussing how referrals could grow ${record.companyName}, I'd love to chat! You can book a time that works for you here: 
+
+https://links.clicki.io/widget/bookings/liveclickidemo`
               );
               alert("copied");
             }
