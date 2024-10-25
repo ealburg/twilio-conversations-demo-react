@@ -19,6 +19,7 @@ import { UserIcon } from "@twilio-paste/icons/esm/UserIcon";
 import { ArrowBackIcon } from "@twilio-paste/icons/esm/ArrowBackIcon";
 
 import { SMSCapableIcon } from "@twilio-paste/icons/esm/SMSCapableIcon";
+import { CalendarIcon } from "@twilio-paste/icons/esm/CalendarIcon";
 
 import { Text } from "@twilio-paste/text";
 import { NotificationLevel } from "@twilio/conversations";
@@ -185,6 +186,33 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
               />
             </MediaFigure>
             <MediaBody>{"Copy Quick Message"}</MediaBody>
+          </MediaObject>
+        </MenuItem>
+        <MenuItem
+          {...menu}
+          onClick={async () => {
+            const record = await getConversationPayload();
+            if (!record || !record.companyName || !record.reviews) {
+            } else {
+              copy(
+                `Hi again! 😊 Did you get a chance to watch the video? 
+                If you're interested in discussing how referrals could grow ${record.companyName}, I'd love to chat! You can book a time that works for you here: 
+                
+                https://links.clicki.io/widget/bookings/liveclickidemo`
+              );
+              alert("copied");
+            }
+          }}
+        >
+          <MediaObject verticalAlign="center">
+            <MediaFigure spacing="space20">
+              <CalendarIcon
+                decorative={false}
+                title="message"
+                color="colorTextIcon"
+              />
+            </MediaFigure>
+            <MediaBody>{"Follow Up - Meeting Link"}</MediaBody>
           </MediaObject>
         </MenuItem>
         <MenuSeparator {...menu} />
