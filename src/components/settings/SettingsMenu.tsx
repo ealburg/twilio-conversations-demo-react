@@ -13,6 +13,8 @@ import {
   MediaFigure,
   MediaBody,
 } from "@twilio-paste/media-object";
+
+import { ToasterPush, useToaster } from "@twilio-paste/core";
 import { FileVideoIcon } from "@twilio-paste/icons/esm/FileVideoIcon";
 import { MoreIcon } from "@twilio-paste/icons/esm/MoreIcon";
 import { UserIcon } from "@twilio-paste/icons/esm/UserIcon";
@@ -57,6 +59,8 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
     () => getSdkConversationObject(props.conversation),
     [props.conversation.sid]
   );
+
+  const toaster = useToaster();
 
   const toggleMuteConversation = () => {
     sdkConvo.setUserNotificationLevel(
@@ -103,14 +107,24 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
       );
       const body = await response.json();
       if (body?.status === "success") {
-        alert("Demo Submitted");
+        // alert("Demo Submitted");
+        toaster.push({
+          message: "Demo Submitted",
+          variant: "success",
+        });
         return true;
       } else {
-        alert("Something Went Wrong");
+        toaster.push({
+          message: "Demo Submitted",
+          variant: "error",
+        });
         return false;
       }
     } catch (e) {
-      console.log("demo error", e);
+      toaster.push({
+        message: "Demo Submitted",
+        variant: "error",
+      });
       return false;
     }
   };
@@ -173,7 +187,10 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
               copy(
                 `Hi, Kendall here! I've created a quick video showing how ${record.companyName} could get more customers through referrals. Can I send you the link?`
               );
-              alert("copied");
+              toaster.push({
+                message: "Copied",
+                variant: "success",
+              });
             }
           }}
         >
@@ -200,7 +217,10 @@ If you're interested in discussing how referrals could grow ${record.companyName
 
 https://links.clicki.io/widget/bookings/liveclickidemo`
               );
-              alert("copied");
+              toaster.push({
+                message: "Copied",
+                variant: "success",
+              });
             }
           }}
         >
