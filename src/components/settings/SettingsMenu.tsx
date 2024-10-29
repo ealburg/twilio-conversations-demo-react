@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Box } from "@twilio-paste/core";
+import { Box, Toaster } from "@twilio-paste/core";
 import copy from "copy-to-clipboard";
 import {
   MenuButton,
@@ -257,6 +257,7 @@ https://links.clicki.io/widget/bookings/liveclickidemo`
           </MediaObject>
         </MenuItem>
       </Menu>
+      <Toaster {...toaster} />
     </Box>
   );
 };
