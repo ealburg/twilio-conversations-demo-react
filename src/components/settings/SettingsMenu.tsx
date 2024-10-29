@@ -111,12 +111,14 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
         toaster.push({
           message: "Demo Submitted",
           variant: "success",
+          dismissAfter: 300,
         });
         return true;
       } else {
         toaster.push({
           message: "Demo Submitted",
           variant: "error",
+          dismissAfter: 300,
         });
         return false;
       }
@@ -124,6 +126,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
       toaster.push({
         message: "Demo Submitted",
         variant: "error",
+        dismissAfter: 300,
       });
       return false;
     }
@@ -190,6 +193,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = (
               toaster.push({
                 message: "Copied",
                 variant: "success",
+                dismissAfter: 300,
               });
             }
           }}
@@ -220,6 +224,7 @@ https://links.clicki.io/widget/bookings/liveclickidemo`
               toaster.push({
                 message: "Copied",
                 variant: "success",
+                dismissAfter: 300,
               });
             }
           }}
